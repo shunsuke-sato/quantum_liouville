@@ -14,8 +14,11 @@ module global_variables
   character(8) :: calc_mode
 
 ! Parameters of model
+!! Harmonic oscillator
   real(8) :: Ip_HO = 24.6d0/27.211d0
   real(8) :: alpha_HO, beta_HO
+!! Jellium model
+  real(8) :: K_JL, C_JL, Q_JL, R0_JL
 
 ! Multi-trajectory
   integer :: Ntraj
