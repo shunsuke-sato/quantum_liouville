@@ -28,8 +28,8 @@ subroutine initialize_parameters
   C_JL = - 1.5d0*K_JL*R0_JL**2
 
 
-  omega0 = 36d0/5d0 !1d0/2.5d0 !1.d0/27.211d0
-  Tpulse = 40d0*2d0*pi/omega0 !100d0/0.02418d0
+  omega0 = 36d0/10.5d0 !1d0/2.5d0 !1.d0/27.211d0
+  Tpulse = 100d0*2d0*pi/omega0 !100d0/0.02418d0
   Up = 40d0 !20d0/27.211d0
   E0 = sqrt(4d0*Up*omega0**2)
 

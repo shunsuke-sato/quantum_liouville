@@ -8,7 +8,7 @@ subroutine QL_dynamics_Jellium
   implicit none
   integer :: it,itraj
   integer :: npos_l,npos
-  real(8) :: Etot_t, force_t(3),Etot_l,Etot0,r2
+  real(8) :: Etot_t, force_t(3),Etot_l,Etot0,r2,r1
 
   npos_l = 0
   Etot_l = 0d0
@@ -39,17 +39,20 @@ subroutine QL_dynamics_Jellium
       if(r2 < R0_JL**2 )then
         force_t(:) = -K_JL*x_n(:) - Et(:,it)
       else
-        force_t(:) = -Q_JL*x_n(:)/r2 - Et(:,it)
+        r1 = sqrt(r2)
+        force_t(:) = -Q_JL*x_n(:)/(r2*r1) - Et(:,it)
       end if
       p_n = p_n + 0.5d0*force_t*dt
       x_n = x_n + p_n*dt
 
-      r2 = sum(x_n**2)
+      r2 = sum(x_n**2) 
       if(r2 < R0_JL**2 )then
         force_t(:) = -K_JL*x_n(:) - Et(:,it+1)
       else
-        force_t(:) = -Q_JL*x_n(:)/r2 - Et(:,it+1)
+        r1 = sqrt(r2)
+        force_t(:) = -Q_JL*x_n(:)/(r2*r1) - Et(:,it+1)
       end if
+
       p_n = p_n + 0.5d0*force_t*dt
       
       x_l(:,it+1) = x_l(:,it+1) + x_n(:)
